@@ -9,8 +9,9 @@ interface IUniswapV2ERC20 {
     function decimals() external pure returns (uint8);
     function totalSupply() external view returns (uint);
     function balanceOf(address owner) external view returns (uint);
+    //定义查询owner允许spender交易的token数量方法
     function allowance(address owner, address spender) external view returns (uint);
-
+    //定义授权方法，token的拥有者向spender授权交易指定value数量的token
     function approve(address spender, uint value) external returns (bool);
     function transfer(address to, uint value) external returns (bool);
     function transferFrom(address from, address to, uint value) external returns (bool);

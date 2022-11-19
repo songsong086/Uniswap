@@ -36,19 +36,19 @@ contract UniswapV2ERC20 is IUniswapV2ERC20 {
             )
         );
     }
-
+//铸币方法 这个方法主要的目的是向某个地址发送一定数量的token
     function _mint(address to, uint value) internal {
         totalSupply = totalSupply.add(value);
         balanceOf[to] = balanceOf[to].add(value);
         emit Transfer(address(0), to, value);
     }
-
+//销毁方法 这个方法主要的目的是销毁某个地址的所持有的token
     function _burn(address from, uint value) internal {
         balanceOf[from] = balanceOf[from].sub(value);
         totalSupply = totalSupply.sub(value);
         emit Transfer(from, address(0), value);
     }
-
+//allowance 定义查询owner允许spender交易的token数量方法
     function _approve(address owner, address spender, uint value) private {
         allowance[owner][spender] = value;
         emit Approval(owner, spender, value);
@@ -79,7 +79,7 @@ contract UniswapV2ERC20 is IUniswapV2ERC20 {
     }
 
     function permit(address owner, address spender, uint value, uint deadline, uint8 v, bytes32 r, bytes32 s) external {
-        require(deadline >= block.timestamp, 'UniswapV2: EXPIRED');
+        require( >= block.timestamp, 'UniswapV2: EXPIRED');
         bytes32 digest = keccak256(
             abi.encodePacked(
                 '\x19\x01',
